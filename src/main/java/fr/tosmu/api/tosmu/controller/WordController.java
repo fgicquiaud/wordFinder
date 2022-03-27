@@ -1,9 +1,6 @@
 package fr.tosmu.api.tosmu.controller;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +34,11 @@ public class WordController {
 	public SearchWordResponseModel search(@RequestBody SearchWordRequestModel request) {
 		var response = new SearchWordResponseModel();
 		
-		List<String> opt = readWordsFromFile.readAll().stream().filter(word -> word.contains(request.getLettres())).collect(Collectors.toList());
-		
-		response.setWordsFound(opt);
+		if(!"".equals(request.getLettersOut())) {
+			response.setWordsFound(readWordsFromFile.containsLetters(request.getLettres(), request.getLengthWord(), request.getLettersOut()));
+		} else {
+			response.setWordsFound(readWordsFromFile.containsLetters(request.getLettres(), request.getLengthWord()));
+		}
 		
 		return response;
 	}
