@@ -78,7 +78,7 @@ public class ReadWordsFromFileService implements ReadWordsFromFile {
 			resource = new ClassPathResource("words/french_words.txt").getFile();
 			String text = new String(Files.readAllBytes(resource.toPath()), Charset.forName("UTF-8"));
 			
-			String[] arrayWords = text.split("\n");
+			String[] arrayWords = text.split(";");
 			
 			listReturned  = Arrays.asList(arrayWords);
 		} catch (IOException e) {
