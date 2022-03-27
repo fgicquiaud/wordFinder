@@ -12,3 +12,8 @@ Spring boot plugin
 
 Maven
 
+## TODO later
+
+Local database
+
+Add words that are legit in dictionnary
