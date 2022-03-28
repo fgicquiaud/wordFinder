@@ -37,12 +37,31 @@ public class ReadWordsFromFileService implements ReadWordsFromFile {
 			String patternWordOut = ".*[".concat(lettersOut.toUpperCase()).concat("].*");
 			if(!"".equals(lettersOut) && word.matches(patternWordOut) )
 				continue;
-			for(String letter : word.split("")) {
+			
+			boolean wordIsOk = true;
+			for(String letterIn : mapLettersIn.keySet()) {
 				if(this.getMapWordsMapCount().get(word) == null)
 					this.getMapWordsMapCount().put(word, generateMapLettersCount(word));
 				
-				if(null != mapLettersIn.get(letter) && mapLettersIn.get(letter) == this.getMapWordsMapCount().get(word).get(letter))
-					retour.add(word);
+				int countLettersIn = mapLettersIn.get(letterIn) != null ? mapLettersIn.get(letterIn) : 0;
+				int countLettersWord = this.getMapWordsMapCount().get(word).get(letterIn) != null ?
+						this.getMapWordsMapCount().get(word).get(letterIn) : 0;
+//				if(!(null != mapLettersIn.get(letter) && mapLettersIn.get(letter) < this.getMapWordsMapCount().get(word).get(letter)))
+//					wordIsOk = false;
+//					break;
+				log.info("Lettre {} mot {} : cout mot {} count letters in {}",
+						letterIn, word, countLettersWord, countLettersIn);
+					
+				if(countLettersWord == 0 || countLettersWord < countLettersIn) {
+					wordIsOk = false;
+					break;
+				}
+
+			}
+			
+			if(wordIsOk) {
+				log.info("Word is ok : {}", wordIsOk);
+				retour.add(word);
 			}
 		}
 		
