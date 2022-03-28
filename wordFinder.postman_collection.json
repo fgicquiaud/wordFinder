@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "030c7333-0a37-41be-9618-9acbfc15b698",
+		"name": "wordFinder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lettres\": \"a\",\r\n    \"lettersOut\": \"ste\",\r\n    \"lengthWord\": 8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/word/search",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"word",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/word/count",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"word",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/word/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"word",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/word/test",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"word",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
