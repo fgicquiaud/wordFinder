@@ -9,10 +9,6 @@ public interface ReadWordsFromFile {
 	
 	List<String> readAll();
 	
-	List<String> containsLetters(String letters);
-	
-	List<String> containsLetters(String letters, int lenght);
-	
 	List<String> containsLetters(String letters, int lengthWord, String lettersOut);
 	
 
