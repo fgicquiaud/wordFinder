@@ -34,21 +34,25 @@ public class WordController {
 	public SearchWordResponseModel search(@RequestBody SearchWordRequestModel request) {
 		var response = new SearchWordResponseModel();
 		
-		if(!"".equals(request.getLettersOut())) {
-			response.setWordsFound(readWordsFromFile.containsLetters(request.getLettres(), request.getLengthWord(), request.getLettersOut()));
-		} else {
-			response.setWordsFound(readWordsFromFile.containsLetters(request.getLettres(), request.getLengthWord()));
-		}
+		response.setWordsFound(readWordsFromFile.containsLetters(request.getLettres(), request.getLengthWord(), request.getLettersOut()));
 		
 		return response;
 	}
 	
-	@GetMapping("/all")
-	public Integer coutAll() {
+	@GetMapping("/count")
+	public Integer cout() {
 		var response = new SearchWordResponseModel();
 		response.setWordsFound(readWordsFromFile.readAll());
 		
 		return response.getWordsFound().size();
+	}
+	
+	@GetMapping("/all")
+	public SearchWordResponseModel all() {
+		var response = new SearchWordResponseModel();
+		response.setWordsFound(readWordsFromFile.readAll());
+		
+		return response;
 	}
 	
 }
