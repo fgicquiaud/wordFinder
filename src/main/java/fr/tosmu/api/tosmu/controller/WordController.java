@@ -34,7 +34,12 @@ public class WordController {
 	public SearchWordResponseModel search(@RequestBody SearchWordRequestModel request) {
 		var response = new SearchWordResponseModel();
 		
-		response.setWordsFound(readWordsFromFile.containsLetters(request.getLettres(), request.getLengthWord(), request.getLettersOut()));
+		response.setWordsFound(
+				readWordsFromFile.containsLetters(
+						request.getLettres(), 
+						request.getLengthWord(), 
+						request.getLettersOut(),
+						request.getPattern()));
 		
 		return response;
 	}

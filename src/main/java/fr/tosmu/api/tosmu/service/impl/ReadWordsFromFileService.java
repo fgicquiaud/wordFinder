@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.core.io.ClassPathResource;
@@ -29,7 +30,7 @@ public class ReadWordsFromFileService implements ReadWordsFromFile {
 	}
 	
 	@Override
-	public List<String> containsLetters(String letters, int lengthWord, String lettersOut) {
+	public List<String> containsLetters(String letters, int lengthWord, String lettersOut, String pattern) {
 		Map<String, Integer> mapLettersIn = generateMapLettersCount(letters.toUpperCase());
 		var retour = new ArrayList<String>();
 		
@@ -37,18 +38,18 @@ public class ReadWordsFromFileService implements ReadWordsFromFile {
 			String patternWordOut = ".*[".concat(lettersOut.toUpperCase()).concat("].*");
 			if(!"".equals(lettersOut) && word.matches(patternWordOut) )
 				continue;
+			if(!"".equals(pattern) && !word.matches(pattern.toUpperCase()))
+				continue;
 			
 			boolean wordIsOk = true;
 			for(String letterIn : mapLettersIn.keySet()) {
 				if(this.getMapWordsMapCount().get(word) == null)
 					this.getMapWordsMapCount().put(word, generateMapLettersCount(word));
-				
+
 				int countLettersIn = mapLettersIn.get(letterIn) != null ? mapLettersIn.get(letterIn) : 0;
 				int countLettersWord = this.getMapWordsMapCount().get(word).get(letterIn) != null ?
 						this.getMapWordsMapCount().get(word).get(letterIn) : 0;
-//				if(!(null != mapLettersIn.get(letter) && mapLettersIn.get(letter) < this.getMapWordsMapCount().get(word).get(letter)))
-//					wordIsOk = false;
-//					break;
+
 				log.info("Lettre {} mot {} : cout mot {} count letters in {}",
 						letterIn, word, countLettersWord, countLettersIn);
 					

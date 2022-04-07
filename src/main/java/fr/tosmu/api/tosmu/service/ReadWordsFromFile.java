@@ -9,7 +9,7 @@ public interface ReadWordsFromFile {
 	
 	List<String> readAll();
 	
-	List<String> containsLetters(String letters, int lengthWord, String lettersOut);
+	List<String> containsLetters(String letters, int lengthWord, String lettersOut, String pattern);
 	
 
 }

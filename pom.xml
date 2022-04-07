@@ -42,6 +42,18 @@
 		</dependency>
 	</dependencies>
 	
+	<pluginRepositories>
+	<pluginRepository>
+			<id>mvncentral</id>
+			<url>https://repo1.maven.org/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+	
 	<build>
 		<plugins>
 			<plugin>
